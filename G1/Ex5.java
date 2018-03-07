@@ -48,17 +48,15 @@ public class Ex5 {
 	}
 
 	public static double processLine (String line) {
-		Stack<Double> operands 		  = new Stack<>();
+		Stack<Double> operands 	= new Stack<>();
 
 		// Get elements from line (considering elements are split by white space)
 		String[] elems = line.split("\\s+");
 
 		for (int i = 0; i < elems.length; i++) {
 			String elem = elems[i];
-			//System.out.println("-----------------\nProcessing " + elem);
 			// Numbers --> to stack
 			if (elem.matches("\\d+")) {
-				//System.out.println("Pushing number " + elem);
 				operands.push(Double.parseDouble(elem));
 			}
 
@@ -73,10 +71,7 @@ public class Ex5 {
 				double operand1 = operands.pop();
 
 				try {
-					//System.out.println("Pushing result of " + operand1 + elem + operand2);
 					operands.push(calculator(operand2, operand1, elem));
-					//System.out.println("Variables: " + variables);
-					//System.out.println("Stack: " + operands);
 					return operands.peek();
 				} catch (IllegalArgumentException e) {
 					System.err.println("ERROR!");
@@ -88,18 +83,13 @@ public class Ex5 {
 			else {
 				// Assignments (= after)
 				if (i < elems.length - 1 && elems[i+1].contains("=")) { 	
-					//System.out.print("Assigning variable " + elem  + "... ") ;
 					variables.put(elem, processLine(line.substring(i + 1)));
-					//System.out.println("\nDONE Assigning variable " + elem  + " with " + variables.get(elem));
 					i = elems.length; // stops the processing the current line
-					//System.out.println("Variables: " + variables);
-					//System.out.println("Stack: " + operands);
 					return variables.get(elem);
 				}
 
 				// Not an assignment --> read variable value
 				else if (variables.containsKey(elem)){
-					//System.out.println("Reading variable " + elem );
 					operands.push(variables.get(elem));
 				}	
 
@@ -108,8 +98,6 @@ public class Ex5 {
 					System.err.println(elem + " is invalid Expression");
 				}
 			}
-			//System.out.println("Variables: " + variables);
-			//System.out.println("Stack: " + operands);
 		}
 		return operands.peek();
 	}

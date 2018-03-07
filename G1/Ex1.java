@@ -38,6 +38,7 @@ public class Ex1 {
 			case "batatas":		// easter egg 
 				System.out.println("Descobriu o código secreto! Ganhou 1000€");
 				System.exit(2);
+				break;
 			default:
 				System.err.println("Operador inválido!");
 				System.exit(1);

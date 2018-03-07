@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,10 +18,12 @@ import java.util.stream.Collectors;
 
 public class Translator {
 
+	// --------------------------------------------------------------------------------------------
 	// Instance Fields
 	private Map<String, String> translationsDictionary;
 	private Map<String, String> definitionsDictionary;
 
+	// --------------------------------------------------------------------------------------------
 	// CTORs
 	/**
 	 * Constructor
@@ -30,10 +31,11 @@ public class Translator {
 	 */
 	public Translator(String path) {
 		translationsDictionary = new HashMap<>();
-		definitionsDictionary = new HashMap<>();
+		definitionsDictionary  = new HashMap<>();
 		addTranslations(path);
 	}
 
+	// --------------------------------------------------------------------------------------------
 	// Getters
 	/**
 	 * Get translation of the words in the file 
@@ -59,15 +61,8 @@ public class Translator {
 	 * @param path path to the file
 	 * @return {@code true} if the dictionary is updated, else {@code false}
 	 */
-	public boolean addTranslations(String path) {
-		try {
-			translationsDictionary.putAll(Files.readAllLines(parseFile(path)).stream().map(str -> str.split("\\s+")).collect(Collectors.toMap(word -> word[0], word -> word[1])));
-			translationsDictionary.forEach((x, y) -> System.out.println("Dictionary Key: " + x +"\t | Value: "+ y));
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		}
+	public void addTranslations(String path) {
+		addTranslations(path, false);
 	}
 
 	/**
@@ -75,17 +70,11 @@ public class Translator {
 	 * @param path path to the file
 	 * @return {@code true} if the dictionary is updated, else {@code false}
 	 */
-	public boolean addDefinitionsTranslations(String path) {	
-		try {
-			definitionsDictionary.putAll(Files.readAllLines(parseFile(path)).stream().map(str -> str.split("\\s+")).collect(Collectors.toMap(word -> word[0], word -> Arrays.toString(Arrays.copyOfRange(word, 1, word.length)).replaceAll("\\[|\\]|,", ""))));
-			definitionsDictionary.forEach((x, y) -> System.out.println("Definition Dictionary Key: " + x +"\t | Value: "+ y));
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		}
+	public void addDefinitionsTranslations(String path) {
+		addTranslations(path, true);
 	}
 
+	// --------------------------------------------------------------------------------------------
 	// Other Methods
 	@Override
 	public int hashCode() {
@@ -142,18 +131,33 @@ public class Translator {
 		return builder.toString();
 	}
 
+	// --------------------------------------------------------------------------------------------
 	// Auxiliary Methods
 	/**
 	 * Parses the file info and adds the said info to the dictionary Map
 	 * @param path
 	 */
-	private Path parseFile(String path) {
-		assert translationsDictionary != null : "Dictionary Map can't be null";
-
+	private static Path parseFilePath (String path) {
 		Path filePath = Paths.get(path);
 		assert Files.exists(filePath) && Files.isReadable(filePath) && !Files.isDirectory(filePath) : "File error";
 
 		return filePath;
+
+	}
+
+	private void addTranslations(String path, boolean isDefinition) {	
+		Map<String, String> dictionary = isDefinition? definitionsDictionary : translationsDictionary;
+		Math.PI
+		try {
+			dictionary.putAll(Files.readAllLines(parseFilePath(path)).stream()
+					.map(str -> str.split("\\s+", 2))
+					.filter(str -> str.length > 2)
+					.collect(Collectors.toMap(word -> word[0], word -> word[1])));
+		} catch (IOException e) {
+			System.err.println("I/O Error.");
+		}
+
+		//dictionary.forEach((x, y) -> System.out.println("Definition Dictionary Key: " + x +"\t | Value: "+ y));
 
 	}
 
@@ -162,15 +166,16 @@ public class Translator {
 
 		StringBuilder s = new StringBuilder();
 		try {
-			Files.readAllLines(parseFile(path)).forEach(str -> parseStr(str, s, isDefinition));
+			Files.readAllLines(parseFilePath(path)).forEach(line -> parse(line, s, isDefinition));
 			return s.toString();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("I/O Error");
+			System.exit(3);
 		}
-		return "I/O Error";
-	} 
+		return "";
+	}
 
-	private void parseStr(String str, StringBuilder s, boolean isDefinition) {
+	private void parse(String str, StringBuilder s, boolean isDefinition) {
 		assert str != null : "String to parse can't be null";
 		assert definitionsDictionary != null && translationsDictionary != null: "Dictionary can't be null";
 		assert s != null : "StringBuilder can't be null";
@@ -181,7 +186,7 @@ public class Translator {
 			if (dictionary.containsKey(word)) {
 				String value = dictionary.get(word);		// translation/definition of word
 				if (isDefinition) {							// for definitions only
-					parseStr(value, s, isDefinition);
+					parse(value, s, isDefinition);
 				}
 				else {
 					s.append(value);

@@ -6,4 +6,4 @@ Universidade de Aveiro
 Pedro Teixeira
 
 ----------------
-  - Aula 01: Programação em Java. Estruturas de Dados. Recursividade.
+  - Aula 01 e 02: Programação em Java. Estruturas de Dados. Recursividade.
