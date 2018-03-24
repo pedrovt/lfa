@@ -11,7 +11,7 @@ grammar Calculator;
 
 // Parser Language Rules
 program:
-        COMMENTS* stat* COMMENTS* EOF;        // A Calculator program has 0 or more statements before End-Of-File
+        COMMENTS*? stat* COMMENTS*? EOF;        // A Calculator program has 0 or more statements before End-Of-File
 
 stat:                                         // Statement has one expression and a NEWLINE
         expr NEWLINE
@@ -44,10 +44,7 @@ expr                                          // Expression is an operation betw
         |
 
         // Integer value
-        INT
-        {
-            $result = Double.parseDouble($INT.text);
-        }
+        value
         |
 
         // ( expression )
@@ -57,6 +54,14 @@ expr                                          // Expression is an operation betw
         }
         ;
 
+value
+        returns [double value]:
+        INT
+        {
+            $result = Double.parseDouble($INT.text);
+        }
+        ;
+        
 // Lexer Language Rules
 INT     : [0-9]+;
 NEWLINE : '\r'? '\n';
