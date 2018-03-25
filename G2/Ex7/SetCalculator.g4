@@ -12,9 +12,9 @@
 grammar SetCalculator;
 
 // Parser Rules
-program   : line* EOF;
+program   : line * EOF;
 
-line      : expr NEWLINE;
+line      : expr;
 
 expr      : '(' expr ')'                #Expr_Parentesis
           | expr '\\' expr              #Expr_Diference
@@ -37,5 +37,6 @@ NUM       : ('-'|'+')? [0-9]+;
 WORD      : [a-z]+;
 ID        : [A-Z]+;
 COMMENTS  : '--' .*? '\n' -> skip;
-NEWLINE   : '\r'? '\n';
-WS        : [ \t\r]+ -> skip;
+//NEWLINE   : '\r'? '\n';
+WS        : [ \t\r\n]+ -> skip;
+ERROR : . ; // to convert all lexer errors into parser errors

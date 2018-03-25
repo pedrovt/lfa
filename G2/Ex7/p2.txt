@@ -1,0 +1,14 @@
+C = {a, b, c}
+--result : {a, b, c}
+
+{a, b, c} + {b, d}
+--result : {a, b, c, d}
+
+{a, b, c} & {b, d}
+--result : {b}
+
+{a, b, c} \ {b, d}
+--result : {a, c}
+
+--result : {}
+C \ C
