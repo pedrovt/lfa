@@ -16,11 +16,11 @@
 // • 3 * (2 + 1) + (2 − 1) -> 3 2 1 + * 2 1 − +
 
 // Declaration of the Grammar
-grammar Calculator;
+grammar Calculator_v3;
 
 // Parser Language Rules
 program:
-        (stat)* EOF;                            // A Calculator program has 0 or more statements before End-Of-File
+        (stat)* EOF;                          // A Calculator program has 0 or more statements before End-Of-File
 
 stat:                                         // Statement has one expression and a NEWLINE
                                               // WARNING: assignment should appear first

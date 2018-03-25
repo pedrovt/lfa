@@ -55,10 +55,10 @@ expr                                          // Expression is an operation betw
         ;
 
 value
-        returns [double value]:
+        returns [double num]:
         INT
         {
-            $result = Double.parseDouble($INT.text);
+            $num = Double.parseDouble($INT.text);
         }
         ;
         

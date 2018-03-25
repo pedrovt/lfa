@@ -7,7 +7,7 @@
 // With support for comments started by "--" (not asked in the exercise)
 
 // Declaration of the Grammar
-grammar Calculator;
+grammar Calculator_v2;
 
 // JAVA code
 @header {
