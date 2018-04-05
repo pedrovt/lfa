@@ -4,7 +4,7 @@
 // Pedro Teixeira, 84715, MIECT
 // --------------------------------
 
-// Operations can't be as a separate rule because that would
+// Operations can't be defined in a separate rule because that would
 // mean indirect left-recursive situation, which is infinite
 // and not solved by ANTLR4
 

@@ -15,7 +15,6 @@ public class SetCalculatorInterpreter extends SetCalculatorBaseVisitor<Set<Strin
 
 	// Instance Fields
 	private Map<String, Set<String>> symbolTable = new HashMap<>();
-	private Set<String> set;
 
 	// ------------------------------------------------------------------------------
 	// Methods
@@ -24,7 +23,7 @@ public class SetCalculatorInterpreter extends SetCalculatorBaseVisitor<Set<Strin
 		Set<String> result = visit(ctx.expr());
 		String str = result.toString();
 		str = "{" + str.substring(1,str.length()-1).replaceAll(" ","") + "}";
-		out.println("result: " + str);
+		out.println("result: " + str + "\n");
 		return result;
 
 	}
@@ -33,10 +32,10 @@ public class SetCalculatorInterpreter extends SetCalculatorBaseVisitor<Set<Strin
 	// Operations on Expressions
 	@Override
 	public Set<String> visitExpr_Union(SetCalculatorParser.Expr_UnionContext ctx) {
-		set = new HashSet<>();
+		Set<String> set = new HashSet<>();
 		ctx.expr().forEach(expr -> set.addAll(visit(expr)));
 		return set;
-	}
+	}	
 
 	@Override
 	public Set<String> visitExpr_Set(SetCalculatorParser.Expr_SetContext ctx) {
@@ -50,7 +49,7 @@ public class SetCalculatorInterpreter extends SetCalculatorBaseVisitor<Set<Strin
 
 	@Override
 	public Set<String> visitExpr_Intersection(SetCalculatorParser.Expr_IntersectionContext ctx) {
-		set = new HashSet<>();
+		Set<String> set = new HashSet<>();
 		set.addAll(visit(ctx.expr(0)));
 		set.retainAll(visit(ctx.expr(1)));		// intersection
 		return set;
@@ -58,7 +57,7 @@ public class SetCalculatorInterpreter extends SetCalculatorBaseVisitor<Set<Strin
 
 	@Override
 	public Set<String> visitExpr_Diference(SetCalculatorParser.Expr_DiferenceContext ctx) {
-		set = new HashSet<>();
+		Set<String> set = new HashSet<>();
 		set.addAll(visit(ctx.expr(0)));
 		set.removeAll(visit(ctx.expr(1)));		// difference
 		return set;
@@ -75,9 +74,9 @@ public class SetCalculatorInterpreter extends SetCalculatorBaseVisitor<Set<Strin
 	public Set<String> visitExpr_Variable(SetCalculatorParser.Expr_VariableContext ctx) {
 		String key = ctx.ID().getText();
 		if (!symbolTable.containsKey(key)) {
-			err.println("ID " + key + " not valid!");
-			exit(1);
-		}
+			err.println("ID " + key + " not valid!");			// or throwing an exception
+			exit(1);											// which shall be catched when	
+		}														// a line is processed
 		return symbolTable.get(key);
 	}
 
@@ -95,7 +94,7 @@ public class SetCalculatorInterpreter extends SetCalculatorBaseVisitor<Set<Strin
 	// Set
 	@Override
 	public Set<String> visitSet(SetCalculatorParser.SetContext ctx) {
-		set = new HashSet<>();
+		Set<String> set = new HashSet<>();
 
 		List<TerminalNode> nums = ctx.NUM();
 		if (nums.size() != 0) {

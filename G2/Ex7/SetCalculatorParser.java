@@ -100,6 +100,11 @@ public class SetCalculatorParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SetCalculatorListener ) ((SetCalculatorListener)listener).exitProgram(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SetCalculatorVisitor ) return ((SetCalculatorVisitor<? extends T>)visitor).visitProgram(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ProgramContext program() throws RecognitionException {
@@ -154,6 +159,11 @@ public class SetCalculatorParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SetCalculatorListener ) ((SetCalculatorListener)listener).exitLine(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SetCalculatorVisitor ) return ((SetCalculatorVisitor<? extends T>)visitor).visitLine(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final LineContext line() throws RecognitionException {
@@ -204,6 +214,11 @@ public class SetCalculatorParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SetCalculatorListener ) ((SetCalculatorListener)listener).exitExpr_Union(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SetCalculatorVisitor ) return ((SetCalculatorVisitor<? extends T>)visitor).visitExpr_Union(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Expr_AssignmentContext extends ExprContext {
 		public AssignmentContext assignment() {
@@ -217,6 +232,11 @@ public class SetCalculatorParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SetCalculatorListener ) ((SetCalculatorListener)listener).exitExpr_Assignment(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SetCalculatorVisitor ) return ((SetCalculatorVisitor<? extends T>)visitor).visitExpr_Assignment(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Expr_SetContext extends ExprContext {
@@ -232,6 +252,11 @@ public class SetCalculatorParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SetCalculatorListener ) ((SetCalculatorListener)listener).exitExpr_Set(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SetCalculatorVisitor ) return ((SetCalculatorVisitor<? extends T>)visitor).visitExpr_Set(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Expr_ParentesisContext extends ExprContext {
 		public ExprContext expr() {
@@ -245,6 +270,11 @@ public class SetCalculatorParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SetCalculatorListener ) ((SetCalculatorListener)listener).exitExpr_Parentesis(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SetCalculatorVisitor ) return ((SetCalculatorVisitor<? extends T>)visitor).visitExpr_Parentesis(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Expr_IntersectionContext extends ExprContext {
@@ -263,6 +293,11 @@ public class SetCalculatorParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SetCalculatorListener ) ((SetCalculatorListener)listener).exitExpr_Intersection(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SetCalculatorVisitor ) return ((SetCalculatorVisitor<? extends T>)visitor).visitExpr_Intersection(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Expr_DiferenceContext extends ExprContext {
 		public List<ExprContext> expr() {
@@ -280,6 +315,11 @@ public class SetCalculatorParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SetCalculatorListener ) ((SetCalculatorListener)listener).exitExpr_Diference(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SetCalculatorVisitor ) return ((SetCalculatorVisitor<? extends T>)visitor).visitExpr_Diference(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Expr_VariableContext extends ExprContext {
 		public TerminalNode ID() { return getToken(SetCalculatorParser.ID, 0); }
@@ -291,6 +331,11 @@ public class SetCalculatorParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SetCalculatorListener ) ((SetCalculatorListener)listener).exitExpr_Variable(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SetCalculatorVisitor ) return ((SetCalculatorVisitor<? extends T>)visitor).visitExpr_Variable(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -439,6 +484,11 @@ public class SetCalculatorParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SetCalculatorListener ) ((SetCalculatorListener)listener).exitAssignment(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SetCalculatorVisitor ) return ((SetCalculatorVisitor<? extends T>)visitor).visitAssignment(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final AssignmentContext assignment() throws RecognitionException {
@@ -486,6 +536,11 @@ public class SetCalculatorParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SetCalculatorListener ) ((SetCalculatorListener)listener).exitSet(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SetCalculatorVisitor ) return ((SetCalculatorVisitor<? extends T>)visitor).visitSet(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
