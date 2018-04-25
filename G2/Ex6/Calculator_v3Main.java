@@ -33,7 +33,7 @@ public class Calculator_v3Main {
 			if (parser.getNumberOfSyntaxErrors() == 0) {
 				// print LISP-style tree:
 				// System.out.println(tree.toStringTree(parser));
-				System.out.println(visitor0.visit(tree));
+				visitor0.visit(tree);
 			}
 			if (sc.hasNextLine())
 				lineText = sc.nextLine();

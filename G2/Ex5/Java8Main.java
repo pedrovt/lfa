@@ -20,7 +20,7 @@ public class Java8Main {
          // print LISP-style tree:
          // System.out.println(tree.toStringTree(parser));
          ParseTreeWalker walker = new ParseTreeWalker();
-         ExtractInformation listener0 = new ExtractInformation();
+         Java8ReflectionWithANTLR listener0 = new Java8ReflectionWithANTLR();
          walker.walk(listener0, tree);
       }
    }
