@@ -1,0 +1,6 @@
+// p4.txt
+
+print reduce 2/4;
+print reduce ((-2/4)^4);
+
+

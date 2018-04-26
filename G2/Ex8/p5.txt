@@ -1,0 +1,12 @@
+﻿// b a s i c :
+print 1/4; // escreve na consola a frac¸c˜ao 1/4
+print 3; // escreve na consola a frac¸c˜ao 3
+3/4 -> x; // guarda a frac¸c˜ao 3/4 na vari´avel x
+print x; // escreve na consola a frac¸c˜ao armazenada na vari´avel x
+// m o r e a d v a n c e d :
+print 1/4-(1/4);
+4/2 * (-2/3 + 4) - 2 -> x;
+print x;
+print x*x:x+(x)-x; // a divis˜ao de frac¸c˜oes ´e feita pelo operador :
+print (1/2)^3; // operador potˆencia para expoentes inteiros (base entre parˆentesis)
+print reduce 2/4; // redu¸c˜ao de frac¸c˜oes
