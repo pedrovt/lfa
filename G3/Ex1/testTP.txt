@@ -1,0 +1,16 @@
+// hello
+x -> READ potato.csv
+READ potato.csv
+PRINT x
+WRITE x
+JOIN  x z
+SELECT 1 FROM x
+SELECT potatoes FROM x
+ADD x y
+/* HELLO AGAIN */
+SUBTRACT y z
+DIVIDE x z
+MULTIPLY x z
+ADD z MULTIPLY x y
+SAVE ALL results.txt
+/* bye */
