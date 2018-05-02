@@ -61,6 +61,18 @@ public class TableProcessorParserBaseListener implements TableProcessorParserLis
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRestore(TableProcessorParser.RestoreContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRestore(TableProcessorParser.RestoreContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAssign(TableProcessorParser.AssignContext ctx) { }
 	/**
 	 * {@inheritDoc}

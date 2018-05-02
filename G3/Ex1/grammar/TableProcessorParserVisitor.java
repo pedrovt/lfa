@@ -38,6 +38,12 @@ public interface TableProcessorParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSave(TableProcessorParser.SaveContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TableProcessorParser#restore}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRestore(TableProcessorParser.RestoreContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TableProcessorParser#assign}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

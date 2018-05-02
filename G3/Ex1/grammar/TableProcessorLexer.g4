@@ -30,16 +30,16 @@ SUBTRACT	: 'SUBTRACT';
 MULTIPLY	: 'MULTIPLY';
 DIVIDE		: 'DIVIDE'	;
 SAVEALL		: 'SAVE ALL';
+RESTOREALL	: 'RESTORE ALL';
 
 // Reserved Symbols
 ARROW		: '->';
 
-// IDs & Names
+// IDs, INTs & File Names
 INT			: [0-9]+;
 C_FILE_NAME	: ([a-zA-Z] | [0-9] | '_')+ '.csv';
 ID			: [a-zA-Z] ([a-zA-Z] | [0-9] | '_')*;
 FILE_NAME	: ([a-zA-Z] | [0-9] | '_' | '.')+;
-
 
 // Comments (Java-like comments) & White-Space
 LINE_COMMENT	: '//' .*? '\n' -> skip;

@@ -64,7 +64,7 @@ public class CSVInterpreter extends CSVParserBaseVisitor<Map<String, List<String
 
 		// verify if row is valid
 		if (fieldsInRow.size() != columnNames.size()) {		
-			err.println("ERROR! Row " + ctx.getText().replace("\n", "") + " has an invalid number of fields! Row won't be added.");
+			err.println("ERROR! Row " + ctx.getText().replace("\n", ""  ) + " has an invalid number of fields! Row won't be added.");
 		}
 		// if so, adds it
 		else {

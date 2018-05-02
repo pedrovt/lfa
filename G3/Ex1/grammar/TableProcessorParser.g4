@@ -28,13 +28,15 @@ instr	: (save | assign | read | print | write | join | select | oper);
 
 save	: SAVEALL FILE_NAME;
 
+restore	: RESTOREALL FILE_NAME;
+
 assign	: ID ARROW table;					// Variable Assignment
 
 read	: READ  C_FILE_NAME;				// Read from file
 
 print	: PRINT table;						// Print to Screen
 
-write 	: WRITE table;						// Write to File
+write 	: WRITE table FILE_NAME;			// Write to File
 
 join	: JOIN  table table;				// Join 
 

@@ -47,6 +47,16 @@ public interface TableProcessorParserListener extends ParseTreeListener {
 	 */
 	void exitSave(TableProcessorParser.SaveContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TableProcessorParser#restore}.
+	 * @param ctx the parse tree
+	 */
+	void enterRestore(TableProcessorParser.RestoreContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TableProcessorParser#restore}.
+	 * @param ctx the parse tree
+	 */
+	void exitRestore(TableProcessorParser.RestoreContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TableProcessorParser#assign}.
 	 * @param ctx the parse tree
 	 */
