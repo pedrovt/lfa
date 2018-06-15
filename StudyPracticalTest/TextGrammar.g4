@@ -22,7 +22,7 @@ assign   : ID COLON text;
 text     : input                                    #TextInput
          | text PLUS text                           #TextConcat
          | text BACKSLASH text BACKSLASH text       #TextReplace
-	     | OPEN_PAR  text CLOSE_PAR                 #TextParenthesis
+         | OPEN_PAR  text CLOSE_PAR                 #TextParenthesis
          | ID                                       #TextID
          | STRING                                   #TextSTRING
          ;
@@ -42,7 +42,7 @@ PLUS     : '+';
 BACKSLASH: '/';
 
 STRING   :  '"' (ESC | . )*? '"';
-fragment ESC: '\\"' | '\\\\' ;
+ESC      : '\\"' | '\\\\' ;
 
 ID       : [a-zA-Z][0-9A-Za-z]*;
 
