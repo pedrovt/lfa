@@ -12,6 +12,8 @@ public class TextGrammarMain {
    public static void main(String[] args) throws Exception {
       for (String fileName : args) {    
         File file = new File(fileName);
+
+        // Verify file sanity
         if (!file.exists()) {
             System.err.println("ERROR : File \"" + fileName + "\" not found!");
             System.exit(2);
