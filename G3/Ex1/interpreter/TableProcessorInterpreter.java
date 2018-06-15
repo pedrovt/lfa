@@ -53,7 +53,7 @@ public class TableProcessorInterpreter extends TableProcessorParserBaseVisitor<C
 	public CSVTable visitSave(SaveContext ctx) {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ctx.FILE_NAME().getText()));
-			out.writeObject(this);
+			out.writeObject(symbolTable);
 			out.close();
 		} catch(FileNotFoundException e) {
 			err.println("ERROR: File can't be saved at the given path " + ctx.FILE_NAME().getText() + "!");
@@ -69,8 +69,9 @@ public class TableProcessorInterpreter extends TableProcessorParserBaseVisitor<C
 	public CSVTable visitRestore(RestoreContext ctx) {
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(ctx.FILE_NAME().getText()));
-			TableProcessorInterpreter object = (TableProcessorInterpreter) in.readObject();
-			// TODO what to do with the object??
+			Map<String, CSVTable> object = (Map<String, CSVTable>) in.readObject();
+			this.symbolTable = object;
+			// TODO 
 			in.close();
 		} catch(FileNotFoundException e) {
 			err.println("ERROR: File can't be saved at the given path " + ctx.FILE_NAME().getText() + "!");

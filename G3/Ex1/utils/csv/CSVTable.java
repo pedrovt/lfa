@@ -19,6 +19,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import utils.csv.grammar.CSVLexer;
 import utils.csv.grammar.CSVParser;
 import utils.csv.interpreter.CSVInterpreter;
+import utils.errorHandling.ErrorHandling;
 
 /**
  * 
@@ -42,6 +43,8 @@ public class CSVTable implements Serializable {
 	 * the table file has any syntax erros.
 	 * @param filepath path to the CSV table file.
 	 */
+
+	// TODO unchecked exception
 	@SuppressWarnings("resource")
 	public CSVTable(String filepath) {
 		// create a stream from the file
@@ -51,6 +54,7 @@ public class CSVTable implements Serializable {
 		}
 		catch(FileNotFoundException e) {
 			err.println("ERROR: CSV table file not found!");
+			ErrorHandling.printError("Error reading the file. Please check if the file exists and can be read.");
 			System.exit(1);
 		}
 
