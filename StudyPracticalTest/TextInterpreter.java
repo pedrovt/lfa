@@ -11,6 +11,9 @@ import static java.lang.System.*;
  */
 public class TextInterpreter extends TextGrammarBaseVisitor<String> {
 
+    // Class Constants
+    private static final Scanner in = new Scanner(System.in);
+    
     // Instance Fields
     private Map<String, String> symbolTable = new HashMap<>();
 
@@ -82,7 +85,6 @@ public class TextInterpreter extends TextGrammarBaseVisitor<String> {
         String prompt = ctx.STRING().getText();
         out.print(prompt.substring(1, prompt.length() - 1)); // ommit the initial quote marks
 
-        Scanner in = new Scanner(System.in);
         String text = in.nextLine();
 
         return text;
